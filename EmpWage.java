@@ -1,3 +1,4 @@
+
 import java.util.Random;
 
 public class EmpWage {
@@ -6,50 +7,48 @@ public class EmpWage {
 	static int empRatePerHr;
 	static int empHrs;
 	static int numberOfWorkingDays;
+	static int maxHrsinMonth;
 
-	public EmpWage(int f,int p,int r,int n)
+	public EmpWage(int f,int p,int r,int n,int m)
 	{
 		this.isFullTime=f;
 		this.isPartTime=p;
 		this.empRatePerHr=r;
 		this.numberOfWorkingDays=n;
+		this.maxHrsinMonth=m;
 	}
 
 	public static void main(String[] args) {
 
 		Random num = new Random ();
 		int totalSalary=0;
-		int Fullday=0;
-		int Halfday=0;
-		int Absent=0;
-		EmpWage s1= new EmpWage (1,2,20,20);
-		for (int day =0; day<20; day++) 
+		int totalEmpHrs=0;
+		int totalWorkingDays=0;
+		EmpWage s1= new EmpWage (1,2,20,20,100);
+
+		while (totalEmpHrs<=100 && totalWorkingDays<20)
 		{
+			totalWorkingDays++;
+
 			int empCheck =num.nextInt(3);
 			switch (empCheck) 
 			{
 			case 1:
 				empHrs=8;
-				Fullday++;
 				break;
 			case 2:
 				empHrs=4;
-				Halfday++;
 				break;
 			default:
 				empHrs=0;
-				Absent++;
 			}
-		int empWage=empHrs*empRatePerHr;
-		 totalSalary = totalSalary+ empWage;
+			totalEmpHrs+=empHrs;
+
 		}
-		System.out.println( "Number of days Absent is " + Absent );
+		 totalSalary=totalEmpHrs*20;
 
-		System.out.println( "Number of Fulldays present is  " + Fullday );
-
-		System.out.println( "Number of Halfdays present is " +Halfday );
-
-		System.out.println("Employee's Monthly Salary is "+totalSalary);
+		 System.out.println("Total employee Hours in a Month is "+totalEmpHrs);
+	         System.out.println("Employee's Monthly Salary is "+totalSalary);
 
 	}
 
