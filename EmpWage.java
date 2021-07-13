@@ -1,41 +1,39 @@
+import java.util.Random;
+
 public class EmpWage {
 
-	int isFullTime, isPartTime;
-	double empCheck;
+	static int isFullTime, isPartTime;
 	static int empRatePerHr;
-	static int empFullTimeHrs;
-	static int empPartTimeHrs;
-	static int empDailyWage ;
+	static int empHrs;
 
-	public EmpWage(int f,int p, double c ,int r,int h1,int h2)
+	public EmpWage(int f,int p,int r)
 	{
 		this.isFullTime=f;
 		this.isPartTime=p;
-		this.empCheck=c;
 		this.empRatePerHr=r;
-		this.empFullTimeHrs=h1;
-		this.empPartTimeHrs=h2;
 	}
 
 	public static void main(String[] args) {
 
-	EmpWage s1= new EmpWage (1,2,Math.floor(Math.random()*10)%3,20,8,4);
+		Random num = new Random ();
+		int empCheck =num.nextInt(3);
+		EmpWage s1= new EmpWage (1,2,20);
 
-		if (s1.isFullTime == s1.empCheck) {
-			System.out.println("Employee is Present");
-			 empDailyWage = empRatePerHr * empFullTimeHrs;
-			 System.out.println("Employee Fullday wage is "+empDailyWage);
-
-			}
-		else if (s1.isPartTime == s1.empCheck) {
-			System.out.println("Employee is Present");
-			 empDailyWage = empRatePerHr * empPartTimeHrs;
-			 System.out.println("Employee Part time wage is "+empDailyWage);
-
+		switch (empCheck) {
+			case 1:
+				empHrs=8;
+				System.out.println("Employee is present for Full day..");
+				break;
+			case 2:
+				empHrs=4;
+				System.out.println("Employee is present for half day..");
+				break;
+			default:
+				empHrs=0;
 		}
-		else {
-			System.out.println("Employee is Absent");
-		}
+		int empWage=empHrs*empRatePerHr;
+		System.out.println("Employee Salary is "+empWage);
+
 	}
 
 }
